@@ -5,9 +5,9 @@
 // Make the code compile and the tests pass!
 //
 // Execute `rustlings hint structs3` or use the `hint` watch subcommand for a
-// hint.
+// hint.cargo run 
 
-// I AM NOT DONE
+
 
 #[derive(Debug)]
 struct Package {
@@ -29,25 +29,27 @@ impl Package {
         }
     }
 
-    fn is_international(&self) -> ??? {
-        // Something goes here...
+    fn is_international(&self) -> bool {
+       if self.sender_country  ==self.recipient_country{
+          false
+       }else{
+        true
+       }
     }
 
-    fn get_fees(&self, cents_per_gram: i32) -> ??? {
-        // Something goes here...
+    fn get_fees(&self, cents_per_gram: i32) -> i32 {
+        cents_per_gram*1500
     }
 }
-
 #[cfg(test)]
 mod tests {
     use super::*;
-
+    
     #[test]
     #[should_panic]
     fn fail_creating_weightless_package() {
         let sender_country = String::from("Spain");
         let recipient_country = String::from("Austria");
-
         Package::new(sender_country, recipient_country, -2210);
     }
 
@@ -82,5 +84,5 @@ mod tests {
 
         assert_eq!(package.get_fees(cents_per_gram), 4500);
         assert_eq!(package.get_fees(cents_per_gram * 2), 9000);
-    }
+    } 
 }
